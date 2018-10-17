@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e23b86fe-2747-4b47-86e0-ce77c4fbea2e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/baixiu-dev/test/image/log.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/baixiu-dev/test/image/新版首页.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/baixiu-dev/test/image/新版首页.psd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/baixiu-dev/test/css/index.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/baixiu-dev/test/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="e23b86fe-2747-4b47-86e0-ce77c4fbea2e" name="Default" comment="" />
     <ignored path="PHPGit.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -325,12 +318,12 @@
       <workItem from="1539588513778" duration="502000" />
       <workItem from="1539605258444" duration="940000" />
       <workItem from="1539618099816" duration="793000" />
-      <workItem from="1539779146110" duration="524000" />
+      <workItem from="1539779146110" duration="739000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2759000" />
+    <option name="totallyTimeSpent" value="2974000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1123" y="319" width="1400" height="1000" extended-state="0" />
