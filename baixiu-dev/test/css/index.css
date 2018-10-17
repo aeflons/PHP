@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #fafafa;
+}
+
+.header{
+    height: 120px;
+    background-color: #ffffff;
+}
+.inner{
+    width: 1200px;
+    height: 120px;
+    background-color: #ffffff;
+    margin:  auto;
+    line-height: 120px;
+}
+.logo{
+    width: 500px;
+    height: 120px;
+    background-color: #0000cc;
+    float: left;
+}
+
+.im{
+    width:500px;
+    height: 120px;
+}
+.nav{
+    float: right;
+}
+li{
+    list-style: none;/*取消小点*/
+}
+.nav li{
+    float: left;
+    padding: 10px;
+
+}
+.nav li a{
+    color: #333333;
+    text-decoration: none;
+}
+.nav li a:hover{
+    color: red;
+}
+/*bannar设置*/
+.banner{
+    height:620px ;
+   background: url("../image/banner.jpg") no-repeat top center;
+}
