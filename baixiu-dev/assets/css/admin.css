@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #fafafa;
+}
+.main{
+    position: relative;
+    overflow: hidden;
+    min-width: 844px;
+    min-height: 100vh;
+    padding: 70px 5px 20px 185px;
+}
+.main .navbar{
+   position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    left: 180px;
+    border-bottom: 1px solid #eeeeee;
+    background-color: #ffffff;
+}
+.main .navbar .navbar-btn{
+    padding: 10px 12px;
+    color: #444444;
+    border: 0;
+}
+.aside{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 180px;
+    height: 100%;
+    background-color: #2c3e50;
+}
+.profile{
+    width: 180px;
+    height: 300px;
+    text-align: center;
+    margin: 100px auto;
+}
+.aside .profile .avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.aside .
