@@ -41,12 +41,33 @@
                    <input type="text" id="sulg" class="form-control input-lg" name="sulg" placeholder="别名">
                    <p class="help-block">https://zce.me/post<strong>slug</strong></p>
                </div>
-               <div>
-               <label for="feature">图像</label>
-                   <img class="">
-               <input type="file" id="feature" class="form-control input-lg" name="feature" placeholder="别名">
+               <div class="form-group">
+                  <label for="feature">图像</label>
+                  <img class="">
+                   <input type="file" id="feature" class="form-control input-lg" name="feature" placeholder="别名">
                 </div>
 
+               <div class="form-group">
+                   <label for="category">分类</label>
+                   <select name="categpory" id="category" class="form-control">
+                      <option value="1">未分类</option>
+                       <option value="2">潮生活</option>
+                   </select>
+               </div>
+               <div class="form-group">
+                     <label for="created">发布时间</label>
+                     <input type="datetime-local" id="created" class="form-control input-lg" name="created" placeholder="发布时间">
+               </div>
+               <div class="form-group">
+                   <label for="status">状态</label>
+                   <select name="status" id="status" class="form-control">
+                     <option value="drafted">草稿</option>
+                       <option value="published">已发布</option>
+                   </select>
+               </div>
+               <div class="form-group">
+                   <button class="btn btn-primary" type="submit">保存</button>
+               </div>
            </div>
        </form>
    </div>
