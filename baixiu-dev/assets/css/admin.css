@@ -169,3 +169,53 @@ body {
 
     border: 2px solid #ff2222;
 }
+.main .container-fluid .form-horizontal {
+    margin-top: 50px;
+}
+
+.main .container-fluid .form-image {
+    position: relative;
+
+    background-color: #fff;
+}
+
+.main .container-fluid .form-image input {
+    display: none;
+}
+
+.main .container-fluid .form-image img {
+    max-width: 150px;
+}
+
+.main .container-fluid .form-image i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    transition: opacity .3s;
+    text-align: center;
+
+    opacity: 0;
+    background: #c0c0c0;
+
+    font-size: 2em;
+}
+
+.main .container-fluid .form-image i::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    margin-top: -14px;
+    margin-left: -14px;
+}
+
+.main .container-fluid .form-image:hover i {
+    opacity: .6;
+}
+
+.main .container-fluid .thumbnail {
+    width: 100%;
+}
