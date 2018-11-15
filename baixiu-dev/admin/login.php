@@ -16,7 +16,7 @@
         <!--<div class="form-group">-->
             <!--<input type="password" id="password" class="form-control" placeholder="密码">-->
         <!--</div>-->
-        <!--<a class="btn btn-primary btn-block" href="index.html">登 录</a>-->
+        <!--<a class="btn btn-primary btn-block" href="index.php">登 录</a>-->
     <!--</form>-->
 <!--</div>-->
 <div class="login">
@@ -34,7 +34,7 @@
             <!--         <label for="password" class="sr-only">密码</label> -->
             <input id="password" type="password" class="form-control" placeholder="密码">
         </div>
-        <a class="btn btn-primary btn-block" href="index.html">登 录</a>
+        <a class="btn btn-primary btn-block" href="index.php">登 录</a>
     </form>
 </div>
 </body>

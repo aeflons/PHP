@@ -16,8 +16,8 @@
     <nav class="navbar">
       <button class="btn btn-default navbar-btn fa fa-bars"></button>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="profile.html"><i class="fa fa-user"></i>个人中心</a></li>
-        <li><a href="login.html"><i class="fa fa-sign-out"></i>退出</a></li>
+        <li><a href="profile.php"><i class="fa fa-user"></i>个人中心</a></li>
+        <li><a href="login.php"><i class="fa fa-sign-out"></i>退出</a></li>
       </ul>
     </nav>
     <div class="container-fluid">
@@ -69,50 +69,19 @@
         <div class="form-group">
           <div class="col-sm-offset-3 col-sm-6">
             <button type="submit" class="btn btn-primary">更新</button>
-            <a class="btn btn-link" href="password-reset.html">修改密码</a>
+            <a class="btn btn-link" href="password-reset.php">修改密码</a>
           </div>
         </div>
       </form>
     </div>
   </div>
-
-  <div class="aside">
-    <div class="profile">
-      <img class="avatar" src="../uploads/avatar.jpg">
-      <h3 class="name">布头儿</h3>
-    </div>
-    <ul class="nav">
-      <li>
-        <a href="index.html"><i class="fa fa-dashboard"></i>仪表盘</a>
-      </li>
-      <li>
-        <a href="#menu-posts" class="collapsed" data-toggle="collapse">
-          <i class="fa fa-thumb-tack"></i>文章<i class="fa fa-angle-right"></i>
-        </a>
-        <ul id="menu-posts" class="collapse">
-          <li><a href="posts.html">所有文章</a></li>
-          <li><a href="post-add.html">写文章</a></li>
-          <li><a href="categories.html">分类目录</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="comments.html"><i class="fa fa-comments"></i>评论</a>
-      </li>
-      <li>
-        <a href="users.html"><i class="fa fa-users"></i>用户</a>
-      </li>
-      <li>
-        <a href="#menu-settings" class="collapsed" data-toggle="collapse">
-          <i class="fa fa-cogs"></i>设置<i class="fa fa-angle-right"></i>
-        </a>
-        <ul id="menu-settings" class="collapse">
-          <li><a href="nav-menus.html">导航菜单</a></li>
-          <li><a href="slides.html">图片轮播</a></li>
-          <li><a href="settings.html">网站设置</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+  <?php include "inc/comment.php"?>
+  <?php $current_page = php_self() ;
+  echo $current_page;
+  $current_name = str_replace(".php",'',$current_page );
+  echo  $current_name;
+  ?>
+  <?php include "inc/sidebar.php";?>
 
   <script src="../assets/vendors/jquery/jquery.js"></script>
   <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>

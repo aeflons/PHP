@@ -5,8 +5,10 @@
         <h3 class="name text-center">yujunzhen</h3>
     </div>
     <ul class="nav">
-        <li class="active">
-            <a href="index.html"><i class="fa fa-dashboard"></i>仪表盘</a>
+        <li <?php if ($current_name = 'categories'){
+            echo '废物';
+        } ?> class="active">
+            <a href="index.php"><i class="fa fa-dashboard"></i>仪表盘</a>
         </li>
 
         <li>

@@ -14,8 +14,8 @@
     <nav class="navbar">
         <button class="btn btn-default navbar-btn fa fa-bars"></button>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="profile.html"><i class="fa fa-user"></i>个人中心</a></li>
-            <li><a href="login.html"><i class="fa fa-sign-out"></i>退出</a></li>
+            <li><a href="profile.php"><i class="fa fa-user"></i>个人中心</a></li>
+            <li><a href="login.php"><i class="fa fa-sign-out"></i>退出</a></li>
         </ul>
     </nav>
     <div class="container-fluid">
@@ -79,46 +79,13 @@
         </div>
     </div>
 </div>
-<div class="aside">
-    <div class="profile">
-        <img class="avatar" src="../assets/uploads/avatar.jpg">
-        <h3 class="name text-center">yujunzhen</h3>
-    </div>
-    <ul class="nav">
-        <li class="active">
-            <a href="index.html"><i class="fa fa-dashboard"></i>仪表盘</a>
-        </li>
-
-        <li>
-            <a  href="#menu-posts" class="collapsed" data-toggle="collapse">
-                <i class="fa fa-thumb-tack"></i>文章<i class="fa fa-angle-right"></i>
-            </a>
-            <ul id="menu-posts" class="collapse">
-                <li><a href="">所有文章</a> </li>
-                <li><a href="">写文章</a> </li>
-                <li><a href="">分类目录</a> </li>
-            </ul>
-        </li>
-        <li>
-            <a href="#"><i class="fa fa-comment"></i>评论</a>
-        </li>
-        <li>
-            <a href="#"><i class="fa fa-user"></i>用户</a>
-        </li>
-        <li>
-            <a  href="#menu-setting" class="collapsed" data-toggle="collapse">
-                <i class="fa fa-cog"></i>设置<i class="fa fa-angle-right"></i>
-
-            </a>
-            <ul id="menu-setting" class="collapse">
-                <li><a href="">导航菜单</a> </li>
-                <li><a href="">图片轮播</a> </li>
-                <li><a href="">网站设置</a> </li>
-            </ul>
-        </li>
-
-    </ul>
-</div>
+<?php include "inc/comment.php"?>
+<?php $current_page = php_self() ;
+echo $current_page;
+$current_name = str_replace(".php",'',$current_page );
+echo  $current_name;
+?>
+<?php include "inc/sidebar.php";?>
 <script src="../assets/vendors/jquery/jquery.js"></script>
 <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
 <script>NProgress.done()</script>

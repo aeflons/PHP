@@ -16,15 +16,15 @@
     <nav class="navbar">
     <button class="btn btn-default navbar-btn fa fa-bars"></button>
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="profile.html"><i class="fa fa-user"></i>个人中心</a></li>
-        <li><a href="login.html"><i class="fa fa-sign-out"></i>退出</a></li>
+        <li><a href="profile.php"><i class="fa fa-user"></i>个人中心</a></li>
+        <li><a href="login.php"><i class="fa fa-sign-out"></i>退出</a></li>
     </ul>
 </nav>
     <div class="container-fluid">
         <div class="jumbotron text-center">
             <h1>One Belt, One Road</h1>
             <p>Thoughts, stories and ideas.</p>
-            <p><a class="btn btn-primary btn-lg" href="post-add.html" role="button">写文章</a></p>
+            <p><a class="btn btn-primary btn-lg" href="post-add.php" role="button">写文章</a></p>
         </div>
         <div class="row">
             <div class="col-md-4">
@@ -44,7 +44,14 @@
         </div>
     </div>
 </div>
+<?php include "inc/comment.php"?>
+<?php $current_page = php_self() ;
+echo $current_page;
+$current_name = str_replace(".php",'',$current_page );
+echo  $current_name;
+?>
 <?php include "inc/sidebar.php";?>
+<?php echo "你真是个废物"?>
 <script src="../assets/vendors/jquery/jquery.js"></script>
 <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
 <script>NProgress.done()</script>
