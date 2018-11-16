@@ -90,7 +90,7 @@
         </div>
     </div>
 </div>
-<?php include "inc/comment.php"?>
+<?php include "inc/conmon.php" ?>
 <?php $current_page = php_self() ;
 echo $current_page;
 $current_name = str_replace(".php",'',$current_page );

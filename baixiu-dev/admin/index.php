@@ -44,14 +44,13 @@
         </div>
     </div>
 </div>
-<?php include "inc/comment.php"?>
+<?php include "inc/conmon.php" ?>
 <?php $current_page = php_self() ;
 echo $current_page;
 $current_name = str_replace(".php",'',$current_page );
 echo  $current_name;
 ?>
 <?php include "inc/sidebar.php";?>
-<?php echo "你真是个废物"?>
 <script src="../assets/vendors/jquery/jquery.js"></script>
 <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
 <script>NProgress.done()</script>
