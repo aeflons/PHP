@@ -69,7 +69,7 @@
             <tbody>
               <tr>
                 <td class="text-center"><input type="checkbox"></td>
-                <td class="text-center"><img class="slide" src="../uploads/slide_1.jpg"></td>
+                <td class="text-center"><img class="slide" src="../assets/uploads/slide_1.jpg"></td>
                 <td>XIU功能演示</td>
                 <td>#</td>
                 <td class="text-center">
@@ -78,7 +78,7 @@
               </tr>
               <tr>
                 <td class="text-center"><input type="checkbox"></td>
-                <td class="text-center"><img class="slide" src="../uploads/slide_2.jpg"></td>
+                <td class="text-center"><img class="slide" src="../assets/uploads/slide_2.jpg"></td>
                 <td>XIU功能演示</td>
                 <td>#</td>
                 <td class="text-center">
@@ -99,8 +99,8 @@
   ?>
   <?php include "inc/sidebar.php";?>
 
-  <script src="../assets/vendors/jquery/jquery.js"></script>
-  <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
+  <script src="admin/assets/vendors/jquery/jquery.js"></script>
+  <script src="admin/assets/vendors/bootstrap/js/bootstrap.js"></script>
   <script>NProgress.done()</script>
 </body>
 </html>
