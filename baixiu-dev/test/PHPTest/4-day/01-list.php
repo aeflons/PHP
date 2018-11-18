@@ -16,13 +16,24 @@ foreach ($lines as  $line) {
    $data[] = explode("|", $line);
 }
 ?>
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
 
 </head>
 <body>
-<div class="div">
+
     <table>
         <thead>
         <tr>
@@ -40,13 +51,22 @@ foreach ($lines as  $line) {
         ?>
         <tr>
             <?php foreach ($value as $col):?>
-            <td><?php echo trim($col); ?></td>
-             <?php endforeach; ?>
+
+                <?php $col = trim($col);?>
+                <?php $pos = strpos($col,'http:');
+                if($pos !== false):?>
+            <td><a href="<?php echo strtolower($col);?>"><?php  echo substr($col,7);?></a></td>
+            <?php else: ?>
+            <td><?php echo $col; ?> </td>
+             <?php
+             endif;
+             endforeach;
+             ?>>
         </tr>
         <?php endforeach; ?>
 
         </tbody>
     </table>
-</div>
+
 </body>
 </html>
