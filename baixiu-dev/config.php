@@ -12,7 +12,7 @@
  * 数据库主机
  *
  */
-define('DB_HOST', 'localhost');
+define('DB_HOST', '127.0.0.1');
 
 /*
  * 数据库用户名
@@ -29,3 +29,7 @@ define('DB_PASS', 'Xiu911004');
  * 数据库名字
  */
 define('DB_NAME','baixiu');
+/*
+ * 数据库端口
+ */
+define('DB_PORT','3306');
