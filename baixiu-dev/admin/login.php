@@ -1,9 +1,10 @@
 <?php
-require_once '../config.php';
+include "../config.php";
 session_start();
 $loginError = '登录错误1';
 
 function login(){
+
     $loginError = '登录错误3';
 
     if (empty($_POST['email'])){
@@ -17,7 +18,7 @@ function login(){
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $conn = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME,DB_PORT);
+    $conn = mysqli_connect("127.0.0.1","root","Xiu911004","baixiu");
     if (!$conn){
         exit('连接数据库失败');
     }
@@ -34,7 +35,7 @@ function login(){
     $_SESSION['current_login_user'] = $user;
 
     // 一切OK 可以跳转
-    header('Location: /admin/');
+   // header('Location: /admin/');
 
 
 }
@@ -43,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     login();
 }
-$loginError = $_SERVER['REQUEST_METHOD'];
 
 ?>
 
@@ -58,12 +58,13 @@ $loginError = $_SERVER['REQUEST_METHOD'];
 </head>
 <body>
 <div class="login">
-    <form class="login-wrap <?php echo isset($message) ? 'shake animated' : '' ?>" action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST" autocomplete="off" novalidate>
+    <?php echo $loginError?>
+    <form class="login-wrap <?php echo isset($message) ? 'shake animated' : 'shake animated' ?>" action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST" autocomplete="off" novalidate>
         <img class="avatar" src="../assets/img/default.png">
         <!-- 有错误信息时展示 -->
-        <!-- <div class="alert alert-danger">
-          <strong>错误！</strong> 用户名或密码错误！
-        </div> -->
+       <div class="alert alert-danger">
+          <strong><?php echo $globals['meessage']?></strong>
+        </div>
         <div class="form-group">
             <label for="email" class="sr-only">邮箱</label>
             <input id="email" name="email" type="email" class="form-control" placeholder="邮箱" autofocus>
