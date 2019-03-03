@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body{
+            background: pink;
+        }
+        .header{
+          width: 500px;
+          height: 300px;
+          margin: 0px auto;  position: relative;
+
+        }
+        .ro{
+            -webkit-animation:qiangge 4s linear infinite;
+        }
+        @-webkit-keyframes qiangge{
+            from{
+                transform:rotate(0deg);
+            }
+            to{
+                transform:rotate(360deg);
+            }
+        }
+        .first ,.second{
+            width: 300px;
+            height: 300px;
+
+            overflow: hidden;
+            position: absolute;
+            border-radius: 50%;
+        }
+        .header:hover .second{
+            transform: rotateX(180deg);
+            transform-origin: bottom;
+            transition: 0.5s;
+        }
+        .header:hover .first {
+            -webkit-animation:qiangge 4s linear infinite;
+
+            transition: all 0.5s ease 0s;
+
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="first"><img src="../image/musicb.jpg" alt=""></div>
+    <div class="second"><img src="../image/musict.jpg" alt=""></div>
+</div>
+</body>
+</html>
