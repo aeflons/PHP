@@ -5,6 +5,19 @@
   <title>Sign in &laquo; Admin</title>
   <link rel="stylesheet" href="../assets/vendors/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="../assets/css/admin.css">
+  <script type="text/javascript" src="../assets/vendors/jquery/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    $(function () {
+       $("form").submit(function () {
+           console.log('heheh');
+       })
+
+        $("#password").click(function () {
+            console.log('123456');
+        })
+    })
+  </script>
 </head>
 <body>
   <div class="login">
@@ -22,7 +35,7 @@
         <label for="password" class="sr-only">密码</label>
         <input id="password" type="password" class="form-control" placeholder="密码">
       </div>
-      <a class="btn btn-primary btn-block" href="index.html">登 录</a>
+      <input type="submit">
     </form>
   </div>
 </body>

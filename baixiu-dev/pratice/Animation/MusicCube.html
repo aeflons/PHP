@@ -37,7 +37,7 @@
             transform-origin: bottom;
             transition: 0.5s;
         }
-        .header:hover .first {
+        .header .first {
             -webkit-animation:qiangge 4s linear infinite;
 
             transition: all 0.5s ease 0s;
@@ -46,9 +46,30 @@
     </style>
 </head>
 <body>
+<audio  src="music.mp3" autoplay="autoplay" type="audio/mpeg" loop="loop"></audio>
+
 <div class="header">
     <div class="first"><img src="../image/musicb.jpg" alt=""></div>
     <div class="second"><img src="../image/musict.jpg" alt=""></div>
 </div>
+<script type="text/javascript" src="../../assets/vendors/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var flag = 1;
+        $(".first").click(function (evnet) {
+            if (flag==1) {
+                $(this).addClass('music');
+                flag=0;
+                $("audio")[0].load();
+                $("audio")[0].play();
+            }else {
+                $(this).remove('music');
+                flag=1;
+                $("audio")[0].pause();
+            }
+
+        });
+    });
+</script>
 </body>
 </html>
