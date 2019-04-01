@@ -38,8 +38,16 @@ class Index extends  controller
             }
         }
     }
-//    public function readbook(){
-//      $file = fopen("public/uploads/book/【六朝云龙吟】 第39集.epub");
-//      return $file;
-//    }
+    public function readbook(){
+        $fileName = "/uploads/book/1.txt";
+        $handle = fopen($fileName, 'w') or die('打开<b>'.$fileName.'</b>文件失败!!');
+
+        //循环10次写入10行数据到文件中
+        for($row=0; $row<10; $row++) {
+            //写入文件
+            fwrite($handle, $row.": www.baidu.com\n");
+        }
+        //关闭由fopen()打开的文件指针资源
+        fclose($handle);
+    }
 }
