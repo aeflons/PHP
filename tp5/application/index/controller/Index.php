@@ -38,4 +38,8 @@ class Index extends  controller
             }
         }
     }
+//    public function readbook(){
+//      $file = fopen("public/uploads/book/【六朝云龙吟】 第39集.epub");
+//      return $file;
+//    }
 }
