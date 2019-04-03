@@ -28,7 +28,7 @@ define('DB_PASS', 'Xiu911004');
 /*
  * 数据库名字
  */
-define('DB_NAME','baixiu');
+define('DB_NAME','XiuXiu');
 /*
  * 数据库端口
  */
@@ -43,4 +43,30 @@ function connectMysql() {
         exit();
     }
     return $conn;
+}
+
+function successResponse($data){
+
+    $info =array(
+        'msg'=>'success',
+        'ret'=>0,
+        'data'=>$data
+    );
+
+    echo json_encode($info);
+}
+
+function failResponse($msg) {
+    $info =array(
+        'msg'=>$msg,
+        'ret'=>-1,
+    );
+
+    echo json_encode($info);
+}
+function addBookChaperInfo($sql) {
+    $conn = connectMysql();
+//    mysqli_query(#conn ,$sql,MYSQLI_STORE_RESULT);
+    mysql_query($sql);
+
 }
