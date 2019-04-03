@@ -15,24 +15,52 @@ $conn = connectMysql();
 
 $file = fopen('2.txt','r') or exit("无法打开文件");
 
+$test = "                       
+   
+   ";
 
+//echo stringRemoveSpace($test);
+//if (preg_match("/\S{1,}/",$test)){
+//echo  '能看到';
+//}
+//return;
 
-
-
+$result = mysqli_query($conn,"SELECT * from book");
+$shop_comment = array();
+while ($rows=mysqli_fetch_array($result,MYSQLI_BOTH)){
+    $count=count($rows);//不能在循环语句中，由于每次删除 row数组长度都减小
+    for($i=0;$i<$count;$i++){
+        unset($rows[$i]);//删除冗余数据
+    }
+    array_push($shop_comment,$rows);
+}
+echo  $shop_comment;
 $content = "";
 $title = "";
 
 while(!feof($file)) {
-    $con = fgetc($file);
+    $con = fgets($file);
     if (preg_match("/第([一二三四五六七八九十]{1,18})(回|章|节){1}[^ -~]/",$con)){
         $con = stringRemoveSpace($con);
-//        $sql = "INSERT INTO chapter (title,content,book_id) VALUES ($title,$content,1)";
-//        $conn->query($sql);
-        $title = $con;
-        $content = "";
-        echo  $sql;
+        if (empty($title)){
+            $title = $con;
+            continue;
+        }else{
+            if (empty($content)){
+
+                continue;
+            }
+            $sql = "INSERT INTO chapter (title,content,book_id) VALUES ('$title','$content',1)";
+            $title = $con;
+            $content = "";
+            mysqli_query($conn,$sql);
+            echo  $sql;
+        }
     }else {
-        $content = $content.$con;
+
+        if (preg_match("/\S{1,}/",$con)){
+            $content = $content.stringRemoveSpace($con);
+        }
     }
 
 }
