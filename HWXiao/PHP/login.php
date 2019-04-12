@@ -40,7 +40,7 @@ $title = "";
 
 while(!feof($file)) {
     $con = fgets($file);
-    if (preg_match("/第([一二三四五六七八九十]{1,18})(回|章|节){1}[^ -~]/",$con)){
+    if (preg_match("/第([零一二三四五六七八九十百千]{1,18})(回|章|节){1}[^ -~]/",$con)){
         $con = stringRemoveSpace($con);
         if (empty($title)){
             $title = $con;

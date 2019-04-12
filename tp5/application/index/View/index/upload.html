@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>上传书籍</title>
-    <link rel="stylesheet" type="text/css" href="/public/static/bootstrap-4.0.0-dist/css/bootstrap.min.css>
+    <title>Title</title>
 </head>
 <body>
-<form action="uploadbook" method="post" enctype="multipart/form-data">
-    
+
+<form action="../../index/index/uploadbook" method="post" enctype="multipart/form-data">
+
+
+
     <div class="container-fluid">
         <label for="bookfile">书籍文件</label>
         <input type="file" name="bookfile" id="bookfile">
@@ -16,28 +18,33 @@
         <label for="bookname">书籍名称</label>
         <input type="text" name="bookname" id="bookname">
 
-    <!--</div>-->
-    <!--<div>-->
-        <!--<label for="bookauthor">作者</label>-->
-        <!--<input type="text" name="bookname" id="bookauthor">-->
+    </div>
+    <div>
+        <label for="bookauthor">作者</label>
+        <input type="text" name="bookauthor" id="bookauthor">
 
-    <!--</div>-->
-    <!--<div>-->
-        <!--<label for="bookIntro">简介</label>-->
-        <!--<textarea type="" name="bookname" id="bookIntro"></textarea>-->
+    </div>
+    <div>
+        <label for="bookIntro">简介</label>
+        <textarea type="" name="bookIntro" id="bookIntro"></textarea>
 
-    <!--</div>-->
-    <!--<div>-->
-        <!--<label for="bookIcon">封面图片</label>-->
-        <!--<input type="file" name="bookIcon">-->
+    </div>
+    <div>
+        <label for="booktype">类型</label>
+        <textarea type="" name="booktype" id="booktype"></textarea>
 
-    <!--</div>-->
+    </div>
+    <div>
+        <label for="bookIcon">封面图片</label>
+        <input type="" name="bookIcon",id="bookIcon">
+
+    </div>
 
     <input type="submit">
 
+
+
+
 </form>
-<script src="../../../../admin/admin/vendors/jquery/jquery.min.js"></script>
-<script>
-</script>
 </body>
 </html>

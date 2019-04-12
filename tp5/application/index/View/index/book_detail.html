@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="__CSS__/bootstrap-4.0.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="__CSS__/mycss.css">
+
+</head>
+<body>
+<div class="content">
+    <div>
+    <ul >
+        {foreach $bookChapters as $vo}
+        <li class="col chapterwidth" >
+            <a class="h6" href="../../../index/index/bookchapter?id={$vo.id}"> {$vo.title}</a>
+
+        </li>
+        {/foreach}
+    </ul>
+    </div>
+</div>
+</body>
+</html>
