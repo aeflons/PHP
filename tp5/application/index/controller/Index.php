@@ -60,7 +60,7 @@ class Index extends  controller
                 successResponse($book_id);
                 while(!feof($handle)) {
                     $con = fgets($handle);
-                    if (preg_match("/第([零一二三四五六七八九十百千]{1,18})(回|章|节|集){1}[^ -~]/",$con)){
+                    if (preg_match("/第([零一二三四五六七八九十百千]{1,18})(回|章|节|集){1}[^\x{4e00}-\x{9fa5}]+/u/",$con)){
                         $con = $this->stringRemoveSpace($con);
                         if (empty($title)){
                             $title = $con;
@@ -100,6 +100,51 @@ class Index extends  controller
         }
 
     }
+   public  function  test(){
+       $con = "夭夭魂飞魄散很快就在痛楚与酥麻中掉出了第二回花精";
+       if (preg_match("/第([零一二三四五六七八九十百千]{1,18})(回|章|节|集){1}[^\x{4e00}-\x{9fa5}]+/u",$con)) {
+       echo "匹配成功";
+       }else{
+           echo "匹配失败";
+       }
+
+
+   }
+
+   public  function  editbook(Request $request){
+       $name = $request->param("bookname");
+       $author = $request->param("bookauthor");
+       $intro = $request->param("bookIntro");
+       $icon = $request->param("bookIcon");
+       $type = $request->param("booktype");
+       $bookid = $request->param("bookid");
+       $bookData=[];
+       if (preg_match("/\S{1,}/",$name)){
+        $bookData['name']=$name;
+       }
+       if (preg_match("/\S{1,}/",$author)){
+           $bookData['author']=$author;
+       }
+       if (preg_match("/\S{1,}/",$intro)){
+           $bookData['intro']=$intro;
+       }
+       if (preg_match("/\S{1,}/",$type)){
+           $bookData['type']=$type;
+       }
+       if (preg_match("/\S{1,}/",$icon)){
+           $bookData['icon']=$icon;
+       }
+
+       if (preg_match("/\S{1,}/",$bookid)){
+           $this->error("缺少必要参数");
+           return;
+       }
+       if ($bookData.count()>0){
+           
+       }
+
+   }
+
     public function readbook(){
         $fileName = "../public/uploads/book/1.txt";
         $handle = fopen($fileName, 'w') or die('打开<b>'.$fileName.'</b>文件失败!!');
@@ -180,7 +225,7 @@ class Index extends  controller
             return;
         }
        $bookinfo = Db::table("book")->where("id",$bookid)->select();
-        $bookChapters = Db::table("chapter")->where("book_id",$bookid)->select();
+        $bookChapters = Db::table("chapter")->where("book_id",$bookid)->field("content",true)->select();
         $this->assign('bookinfo', $bookinfo);
         $this->assign("bookChapters",$bookChapters);
         return $this->fetch();
@@ -201,5 +246,54 @@ class Index extends  controller
          $this->assign("bookchapter",$bookChapter[0]);
          return $this->fetch();
      }
+     /*添加小说分类,1添加,2编辑,*/
+     function add_book_type(Request $request){
+         $type = $request->param('type');
+          $name = $request->param('name');
+         $typeid = $request->param('typeid');
+         if (empty($type) || !preg_match("/\S{1,}/",$type)){
+             failResponse("缺少必要参数");
+             return;
+         }
+         if (empty($name) || !preg_match("/\S{1,}/",$name)){
+             failResponse("缺少必要参数");
+             return;
+         }
+         $typeData = [
+             'name'=>$name,
+         ];
+         if ($type==1){
+             Db::table("type")->insert($typeData);
+             successResponse("添加成功");
+         }else if ($type==2){
+             if (empty($typeid) || !preg_match("/\S{1,}/",$typeid)){
+                 failResponse("缺少必要参数");
+                 return;
+             }
+             Db::table("type")->where("id",$typeid)->update($typeData);
+             successResponse("修改成功");
+
+
+         }else{
+             $this->error("发生错误");
+         }
+
+     }
+
+    /*添加小说分类,1添加,2编辑,*/
+    function delete_book_type(Request $request){
+        $typeid = $request->param('typeid');
+
+        if (empty($typeid) || !preg_match("/\S{1,}/",$typeid)){
+                failResponse("缺少必要参数");
+                return;
+            }
+            Db::table("type")->where("id",$typeid)->delete();
+            successResponse("删除成功");
+
+
+
+
+    }
 
 }
