@@ -25,8 +25,9 @@ class Index extends  controller
         $author = $request->param("bookauthor");
         $intro = $request->param("bookIntro");
         $date  = time();
-        $icon = $request->param("bookIcon");
+        $icon = $request->file("bookIcon");
         $type = $request->param("booktype");
+        $iconPath='';
         if (empty($file) || empty($name)
 //            || empty($author) || empty($intro) || empty($icon) || empty($type)
         )
@@ -118,6 +119,8 @@ class Index extends  controller
        $icon = $request->param("bookIcon");
        $type = $request->param("booktype");
        $bookid = $request->param("bookid");
+       $iconUrl = $request->file("icon");
+
        $bookData=[];
        if (preg_match("/\S{1,}/",$name)){
         $bookData['name']=$name;
@@ -139,9 +142,26 @@ class Index extends  controller
            $this->error("缺少必要参数");
            return;
        }
-       if ($bookData.count()>0){
-           
+
+       if($iconUrl) {
+           $info = $iconUrl->validate(["ext" => "jpeg,png"])->rule('md5')->move(ROOT_PATH . 'public' . DS . 'uploads');
+           if ($info) {
+               // 成功上传后 获取上传信息
+               // 输出 jpg
+               $iconPath = $info->getSaveName();
+               $bookData['icon']=$iconPath;
+           }else{
+               failResponse('上传图片失败');
+           }
        }
+       if ($bookData.count()>0){
+       Db::table("book")->where("id",$bookid)->update($bookData);
+           successResponse("修改成功");
+       }else{
+           $this->error("缺少必要参数");
+
+       }
+
 
    }
 
