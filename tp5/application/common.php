@@ -8,6 +8,14 @@
 // +----------------------------------------------------------------------
 // | Author: 流年 <liu21st@gmail.com>
 // +----------------------------------------------------------------------
+//require_once 'common/aip-php-sdk-2.2.10/AipImageClassify.php';
+//
+// 你的 APPID AK SK
+const APP_ID = '16083753';
+const API_KEY = 'EYQW69zB2UnBQEpdGox55jZs';
+const SECRET_KEY = 'wC7OKkFhMQFU8eBd0fHw0HXRZ8w7k94R';
+
+
 
 // 应用公共文件
 /*
