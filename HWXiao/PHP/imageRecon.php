@@ -18,10 +18,10 @@ function flowerReconfig()
     $image = file_get_contents($path);
 
     $client = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
-     print_r($client);
-//    $options = array();
-//    $options["baike_num"] = 5;
-//    print_r($client->plantDetect($image, $options));
+//     print_r($client);
+    $options = array();
+    $options["baike_num"] = 5;
+    print_r($client->plantDetect($image, $options));
 
 
 }
