@@ -260,7 +260,6 @@ class AipImageClassify extends AipBase {
 
         $data = array_merge($data, $options);
 
-        echo  $data;
         return $this->request($this->plantDetectUrl, $data);
     }
 

@@ -130,7 +130,6 @@ class AipBase {
     protected function request($url, $data, $headers=array()){
         try{
             $result = $this->validate($url, $data);
-            echo $result;
             if($result !== true){
                 return $result;
             }

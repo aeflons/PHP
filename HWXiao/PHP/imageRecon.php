@@ -21,7 +21,7 @@ function flowerReconfig()
 //     print_r($client);
     $options = array();
     $options["baike_num"] = 5;
-    print_r($client->plantDetect($image, $options));
+    echo json_encode($client->plantDetect($image, $options));
 
 
 }
