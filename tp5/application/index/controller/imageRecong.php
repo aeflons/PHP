@@ -23,6 +23,9 @@ class imageRecong extends  controller
     public function flowerReconfig(Request $request){
 //        $path = ROOT_PATH . 'public' . DS . 'static'.'/image/'.'498159452_b71afd65ba.jpg';
 
+
+        successResponse($this->demoDic());
+        return;
         $file = $request->file("image");
 
         if ($file) {
@@ -45,9 +48,34 @@ class imageRecong extends  controller
           echo  failResponse("缺少图片");
         }
 
+    }
 
+    public function demoDic() {
+        $result = array();
 
+        $baike_info = [
+            "baike_url"=>"http://baike.baidu.com/item/%E8%8D%B7%E8%8A%B1/158674",
+            "description"=>"荷花(Lotus flower)属山龙眼目，莲科，是莲属二种植物的通称。又名莲花、水芙蓉等。是莲属多年生水生草本花卉。地下茎长而肥厚，有长节，叶盾圆形。花期6至9月，单生于花梗顶端，花瓣多数，嵌生在花托穴内，有红、粉红、白、紫等色，或有彩纹、镶边。坚果椭圆形，种子成卵形。荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。荷花全身皆宝，藕和莲子能食用，莲子、根茎、藕节、荷叶、花及种子的胚芽等都可入药。其出污泥而不染之品格恒为世人称颂。“接天莲叶无穷碧，映日荷花别样红”就是对荷花之美的真实写照。荷花“中通外直，不蔓不枝，出淤泥而不染，濯清涟而不妖”的高尚品格，历来为古往今来诗人墨客歌咏绘画的题材之一。1985年5月荷花被评为中国十大名花之一。荷花是印度,越南的国花。",
 
+        ];
+
+        $result[0]= [
+            "score"=>0.79123616218567,
+            "name"=>"荷花",
+            "baike_info"=>$baike_info,
+        ];
+
+        $result[1]= [
+            "score"=>0.123616218567,
+            "name"=>"莲",
+            "baike_info"=>$baike_info,
+        ];
+
+        $data = [
+            "log_id"=>2233046923807801461,
+            "result"=>$result,
+        ];
+        return $data;
 
     }
 }
