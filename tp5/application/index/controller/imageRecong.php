@@ -27,7 +27,7 @@ class imageRecong extends  controller
         successResponse($this->demoDic());
         return;
         $file = $request->file("image");
-
+         $type = $request->param("type");
         if ($file) {
             $info = $file->rule('md5')->move(ROOT_PATH . 'public' . DS . 'uploads');
             if ($info) {
@@ -39,7 +39,19 @@ class imageRecong extends  controller
 
             $options = array();
             $options["baike_num"] = 5;
-            $data = $client->plantDetect($image, $options);
+                if ($type == 1){
+                    $data = $client->plantDetect($image, $options);
+                }else if($type == 2){
+                    $data = $client->animalDetect($image, $options);
+
+                }
+                else if($type == 3){
+                    $data = $client->dishDetect($image, $options);
+
+                }
+                else if($type == 4){
+                    $data = $client->logoSearch($image, $options);
+                }
             return json_encode($data);
         }else{
             }
@@ -50,6 +62,9 @@ class imageRecong extends  controller
 
     }
 
+    public  function feedback() {
+        echo successResponse("反馈成功,感谢您的宝贵意见");
+    }
     public function demoDic() {
         $result = array();
 
