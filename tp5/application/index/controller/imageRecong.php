@@ -35,6 +35,7 @@ class Imagerecong extends  Controller
         $file = $request->file("image");
          $type = $request->param("type");
         if ($file) {
+
             $info = $file->rule('md5')->move(ROOT_PATH . 'public' . DS . 'uploads');
             if ($info) {
             vendor("AipImageClassify");
@@ -58,8 +59,9 @@ class Imagerecong extends  Controller
                 else if($type == 4){
                     $data = $client->logoSearch($image, $options);
                 }
-            return json_encode($data);
+            return successResponse($data);
         }else{
+                echo  failResponse("文件失败");
             }
 
         }else {
