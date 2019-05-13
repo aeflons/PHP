@@ -6,14 +6,14 @@
  * Time: 17:28
  */
 namespace app\index\controller;
-use think\controller;
-use think\config;
+use think\Controller;
+use think\Config;
 use think\Db;
 use think\Request;
 
 
 
-class imageRecong extends  controller
+class Imagerecong extends  Controller
 {
     public function index()
     {
@@ -22,10 +22,16 @@ class imageRecong extends  controller
     }
     public function flowerReconfig(Request $request){
 //        $path = ROOT_PATH . 'public' . DS . 'static'.'/image/'.'498159452_b71afd65ba.jpg';
-
-
-        successResponse($this->demoDic());
-        return;
+//        $image = file_get_contents($path);
+//         vendor("AipImageClassify");
+//          $client = new \ AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
+//
+//           $options = array();
+//            $options["baike_num"] = 5;
+//             $data = $client->plantDetect($image, $options);
+//          return successResponse($data);
+//        successResponse($this->demoDic());
+//        return;
         $file = $request->file("image");
          $type = $request->param("type");
         if ($file) {

@@ -1,10 +1,10 @@
 <?php
 namespace app\index\controller;
-use think\controller;
-use think\config;
+use think\Controller;
+use think\Config;
 use think\Db;
 use think\Request;
-class Index extends  controller
+class Index extends  Controller
 {
     public function index()
     {
@@ -16,6 +16,7 @@ class Index extends  controller
         echo 'hello';
     }
     public  function upload(){
+        echo 'hello';
         return $this->fetch();
     }
     public function uploadbook(Request $request)
