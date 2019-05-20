@@ -4,6 +4,8 @@ use think\Controller;
 use think\Config;
 use think\Db;
 use think\Request;
+use think\Session;
+use Yunpian\Sdk\YunpianClient;
 class Index extends  Controller
 {
     public function index()
@@ -312,9 +314,91 @@ class Index extends  Controller
             Db::table("type")->where("id",$typeid)->delete();
             successResponse("删除成功");
 
+    }
+/*获取验证码*/
+    function get_verify(Request $request ) {
+        $mobile = $request->param('mobile');
+        if ($mobile) {
+            $isMob = "/^1[3-5,7,8]{1}[0-9]{9}$/";
+            if (!preg_match($isMob, $mobile) || empty($mobile))
+            {
+                failResponse('请正确输入手机号码');
+                die();
+            }
+            $code=mt_rand(1111,9999);
+            $apikey = "622e393614f247a87772c974ec227b0e"; //修改为您的apikey(https://www.yunpian.com)登陆官网后获取
+            //请用自己的手机号代替
+            $text="【砼车通】您的验证码是".$code;
+            $ch = curl_init();
 
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept:text/plain;charset=utf-8', 'Content-Type:application/x-www-form-urlencoded','charset=utf-8'));
 
+            /* 设置返回结果为流 */
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+            /* 设置超时时间*/
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+
+            /* 设置通信方式 */
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $data=array('text'=>$text,'apikey'=>$apikey,'mobile'=>$mobile);
+            $json_data = send($ch,$data);
+            session_start();
+            Session::set('code',$code);
+            Session::set('mobile',$mobile);
+            $array['code']=$code;
+            $array['mobile']=$mobile;
+            print_r($data);
+            die();
+
+        }
+    }
+
+    // 验证验证码
+    public function check_verify(Request $request)
+    {
+        $code=$request->param('code');
+        // $code=1234;
+        // $mobile2=13790827246;
+        $code2=Session::get('code');
+        $mobile=Session::get('mobile');
+        $mobile2=$request->param('mobile');
+        $data['code']=$code;
+        $data['code2']=$code2;
+        // print_json(01,'请输入验证码',$data);
+        if ($mobile2) {
+            // 验证手机号码
+            $isMob = "/^1[3-5,7,8]{1}[0-9]{9}$/";
+            if (!preg_match($isMob, $mobile2) || empty($mobile2)) {
+                failResponse('请正确输入手机号码');
+                die();
+            }
+            if ($mobile != $mobile2) {
+                failResponse('第一次输入的手机号码不同');
+                die();
+            }
+            // die();
+            $res = Db::table("user")->where("mobile",$mobile2);
+            // $this->save_log($res['user_id'],3,$m_where,0);
+            // var_export($res);
+            // die();
+
+            if ($res) {
+                print_json(-1, '该号码已被注册');
+            }
+
+            if ($code != I('code')) {
+                print_json(-1, '验证码错误', $data);
+            } else {
+                $data['user_id'] = $res;
+                session('code', null);
+                print_json(00, 'ok', $data);
+
+            }
+        } else {
+            failResponse('缺少手机号码');
+        }
     }
 
 }
