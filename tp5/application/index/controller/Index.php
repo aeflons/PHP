@@ -18,7 +18,7 @@ class Index extends  Controller
     }
     public function hello()
     {
-        Db::table("book")
+        Db::table("book");
         echo 'hello';
     }
     public  function upload(){
@@ -62,13 +62,14 @@ class Index extends  Controller
 
                 $data = ['name' => $name, 'author' => $author, 'intro' => $intro, 'type' => $type, 'date' => $date, 'icon' => $icon, 'book_path' => $bookPath];
 
+
                 $book_id = Db::table("book")->insertGetId($data);
                 $content = "";
                 $title = "";
-                successResponse($book_id);
                 while(!feof($handle)) {
                     $con = fgets($handle);
-                    if (preg_match("/第([零一二三四五六七八九十百千]{1,18})(回|章|节|集){1}[^\x{4e00}-\x{9fa5}]+/u/",$con)){
+                    successResponse($con);
+                    if (preg_match("#第([零一二三四五六七八九十百千]{1,18})(回|章|节|集){1}[^\x{4e00}-\x{9fa5}]+$/u#",$con)){
                         $con = $this->stringRemoveSpace($con);
                         if (empty($title)){
                             $title = $con;
