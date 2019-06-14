@@ -11,13 +11,13 @@ return [
     // 服务器地址
     'hostname'        => '127.0.0.1',
     // 数据库名
-    'database'        => 'xiuxiu',
+    'database'        => 'Xiuxiu',
     // 用户名
     'username'        => 'root',
     // 密码
     'password'        => 'Xiu911004',
     // 端口
-    'hostport'        => '8889',
+    'hostport'        => '3306',
     // 连接dsn
     'dsn'             => '',
     // 数据库连接参数
@@ -39,7 +39,7 @@ return [
     // 自动读取主库数据
     'read_master'     => false,
     // 是否严格检查字段是否存在
-    'fields_strict'   => true,
+    'fields_strict'   => false,
     // 数据集返回类型
     'resultset_type'  => 'array',
     // 自动写入时间戳字段

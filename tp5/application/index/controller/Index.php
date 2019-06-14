@@ -51,11 +51,11 @@ class Index extends  Controller
                 $bookPath = $info->getSaveName();
                 $bookPath = "../public/uploads/".$bookPath;
 
-              if ($this->detect_encoding($bookPath)!='UTF-8'){
-                    failResponse('请上传utf-8编码文件');
-
-                    return;
-                }
+//              if ($this->detect_encoding($bookPath)!='UTF-8'){
+//                    failResponse('请上传utf-8编码文件'.$this->detect_encoding($bookPath));
+//
+//                    return;
+//                }
 
 
                 $handle = fopen($bookPath, 'r') or die('打开<b>'.$bookPath.'</b>文件失败!!');
@@ -68,8 +68,7 @@ class Index extends  Controller
                 $title = "";
                 while(!feof($handle)) {
                     $con = fgets($handle);
-                    successResponse($con);
-                    if (preg_match("#第([零一二三四五六七八九十百千]{1,18})(回|章|节|集){1}[^\x{4e00}-\x{9fa5}]+$/u#",$con)){
+                    if (preg_match("/第([零一二三四五六七八九十百千]{1,18})(回|章|节|集){1}[^\x{4e00}-\x{9fa5}]+/u",$con)){
                         $con = $this->stringRemoveSpace($con);
                         if (empty($title)){
                             $title = $con;
@@ -88,9 +87,9 @@ class Index extends  Controller
                             ];
                             $title = $con;
                             $content = "";
-                            //$sql = "INSERT INTO chapter (title,content,book_id,chapter_date) VALUES ('$title','$content',$book_id,$chapterDate)";
-                            //Db::query($sql);
-                          $chapter_id = Db::insertGetId($chapterData);
+//                            $sql = "INSERT INTO chapter (title,content,book_id,chapter_date) VALUES ('$title','$content',$book_id,$chapterDate)";
+//                            Db::query($sql);
+                          $chapter_id = Db::table("chapter")->insertGetId($chapterData);
                         }
                     }else {
 
@@ -110,7 +109,7 @@ class Index extends  Controller
 
     }
    public  function  test(){
-       $con = "夭夭魂飞魄散很快就在痛楚与酥麻中掉出了第二回花精";
+       $con = "第一章 夭夭魂飞魄散很快就在痛楚与酥麻中掉出了第二回花精";
        if (preg_match("/第([零一二三四五六七八九十百千]{1,18})(回|章|节|集){1}[^\x{4e00}-\x{9fa5}]+/u",$con)) {
        echo "匹配成功";
        }else{
@@ -404,6 +403,11 @@ class Index extends  Controller
         } else {
             failResponse('缺少手机号码');
         }
+    }
+    // 测试匹配
+
+    public function  testMatch() {
+
     }
 
 }
