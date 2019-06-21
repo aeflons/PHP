@@ -35,16 +35,22 @@ class Index extends  Controller
         $icon = $request->file("bookIcon");
         $type = $request->param("booktype");
         $iconPath='';
-        if (empty($file) || empty($name)
+        if (empty($file)
 //            || empty($author) || empty($intro) || empty($icon) || empty($type)
         )
         {
-            failResponse("缺少必要参数");
+            failResponse("缺少文件");
             return;
         }
-
+        if (empty($name)
+//            || empty($author) || empty($intro) || empty($icon) || empty($type)
+        )
+        {
+            failResponse("缺少必要参数书名");
+            return;
+        }
         if($file) {
-            $info = $file->validate(["ext" => "txt,equb"])->rule('md5')->move(ROOT_PATH . 'public' . DS . 'uploads');
+            $info = $file->validate(["ext" => "txt,equb"])->move(ROOT_PATH . 'public' . DS . 'uploads');
             if ($info) {
                 // 成功上传后 获取上传信息
                 // 输出 jpg
@@ -146,7 +152,7 @@ class Index extends  Controller
        }
 
        if (preg_match("/\S{1,}/",$bookid)){
-           $this->error("缺少必要参数");
+           $this->error("缺少必要参数bookid");
            return;
        }
 
@@ -190,18 +196,7 @@ class Index extends  Controller
      dump(Db::query("SELECT *FROM book"));
 
     }
-    public function booklist(Request $request){
-        $page = 1;
-        $paginate=10;
-        $type = 1;
 
-        $page = $request->param("page");
-        $type = $request->param("type");
-
-        $data = Db::table("chapter")->where("book_id",1)->paginate(10);
-
-        return json_encode($data,JSON_UNESCAPED_SLASHES);
-    }
 
 
     function detect_encoding($file_path, $filesize = '1000') {
@@ -253,6 +248,7 @@ class Index extends  Controller
         }
        $bookinfo = Db::table("book")->where("id",$bookid)->select();
         $bookChapters = Db::table("chapter")->where("book_id",$bookid)->field("content",true)->select();
+
         $this->assign('bookinfo', $bookinfo);
         $this->assign("bookChapters",$bookChapters);
         return $this->fetch();
@@ -404,10 +400,21 @@ class Index extends  Controller
             failResponse('缺少手机号码');
         }
     }
-    // 测试匹配
+    public function bookChaperlist(Request $request){
+        $bookid = $request->param("bookid");
 
-    public function  testMatch() {
+        $data = Db::table("chapter")->where("book_id",$bookid)->paginate(10);
 
+        return json_encode($data,JSON_UNESCAPED_SLASHES);
+    }
+    public function  booklist(Request $request) {
+        //page从1开始,0和1是一样的
+        $page = $request->param("page");
+        $config = [
+            "page"=>$page,
+        ];
+        $data = Db::table("book")->order('id desc')->field('book_path',true)->paginate(10,false,$config);
+        return successResponse($data);
     }
 
 }

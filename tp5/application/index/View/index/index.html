@@ -2,9 +2,152 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>我爱秀小说网</title>
+    <link rel="stylesheet" href="__CSS__/bootstrap-4.0.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="__CSS__/mycss.css">
+    <script src = "__CSS__/jquery/jquery.js"></script>
+    <script src = "__CSS__/bootstrap-4.0.0-dist/js/bootstrap.js"></script>
+    <script src = "__CSS__/bootstrap-paginator/bootstrap-paginator.js"></script>
+
+
 </head>
 <body>
+
+<div class="all-book">
+<ul class="all-book-ul" ID="ul">
+    <!--<li>-->
+       <!--<div class="book-image-box">-->
+         <!--<img src="__IMAGE__/decover.png">-->
+        <!--</div>-->
+        <!--<div class="book-info-box">-->
+           <!--<h4>-->
+               <!--<a href="" target="_blank">逍遥小散仙</a>-->
+           <!--</h4>-->
+            <!--<p> <span>作者:</span><a href="">迷男</a></p>-->
+            <!--<p> <span>类别:</span><a href="">修仙</a></p>-->
+            <!--<p> <span>最新章节:</span><a href="">桃园</a></p>-->
+
+        <!--</div>-->
+        <!--<div class="book-intro-info">-->
+        <!--<p> 散者，即无拘无束，逍遥自在。散仙者，诸仙之末，或逍遥于深山海岛，或淡隐于街井闹市，低者不过丹卜之流，高者却堪比大罗太乙，鸿蒙至今，流传着无数光怪陆离的奇人异事。-->
+
+            <!--　　散仙，似仙非仙、是人超人的特殊身分，而崔小玄正是玄教内的除魔小散仙，身负先天太玄的崔小玄正是不属九幽十类，不入六道轮回，不在三界五行的太古散仙玄狐转世。-->
+            <!--　　和其他散仙的小小不同之处，便是他醉心于异宝新术的发明，不过，超越常规的发明总需要付点代价，而最常碰到的代价就是……无敌将军大暴走啦！！！-->
+            <!--　　日月新帝大兴土木建造迷楼，悄悄吸取十九灵脉精华，玄教查出这迷楼可能源自於叛教逆徒之手，为了维持天下苍生万物，玄教教主特指派如意仙娘崔采婷入京，而这回，下山除魔的名单上也多了从未见识过花花世界的崔小玄……-->
+            <!--　　且看一个贪玩小散仙遨游天地，游戏于诸多妖娆之中香艳的故事。</p>-->
+        <!--</div>-->
+
+
+
+    <!--</li>-->
+</ul>
+
+</div>
+<div class="page">
+    <ul class="pagination"></ul>
+</div>
+<!--<script type="text/template" id="tableTemp">-->
+    <!--<%for(let i = 0; i < item.length; i++){%>-->
+    <!--<tr>-->
+        <!--<td  class=""><%=(item[i].page * item[i].pageSize )+ i + 1%></td>-->
+        <!--<td><%=item[i].name%></td>-->
+        <!--<td><%=item[i].gender%></td>-->
+        <!--<td><%=item[i].age%></td>-->
+    <!--</tr>-->
+    <!--<%}%>-->
+<!--</script>-->
+<script>
+    let currentPage = 1;
+    let pageSize = 3;
+    function render() {
+        $.ajax({
+            url: "http://tp5.com:8888/index/index/booklist",
+            data: {
+                page: currentPage,
+            },
+            dataType: "json",
+            success: function (result) {
+                console.log(result)
+//                // 将数据渲染到页面
+               var data = result["data"]["data"];
+                var str = "";
+                for (let i = 0; i < data.length; i++){
+                    var item = data[i];
+
+                   str += "<ul class=\"all-book-ul\" ID=\"ul\">"+
+
+                           "<li>" +
+                        "<div class=\"book-image-box\">" +
+                           "<img src=\"__IMAGE__/decover.png\">" +
+                    "</div>" +
+                           "<div class=\"book-info-box\">" +
+                           "<h4>"+
+                                "<a href=\"\" target=\"_blank\">"+item.name +"</a>" +
+                           "</h4>" +
+                           "<p>" +
+                           " <span>作者:</span>" +
+                           "<a href="+ "http://tp5.com:8888/index/index/bookDetail?id=" +item.id + ">"+item.author +"</a> " +
+                           "</p>"+
+                           "<p>" +
+                           " <span>类别:</span>" +
+                           "<a href=\"\">"+item.type +"</a>" +
+                           "</p>"+
+//                    "<p> <span>最新章节:</span><a href=\"\">"+item.name +"</a></p>"+
+
+                    "</div>"+
+                    "<div class=\"book-intro-info\">"+
+                    "<p> "+item.intro +"</p>"+
+                    "</div>"+
+
+
+
+                    "</li>" + "</ul>"
+
+
+
+
+
+
+
+
+                }
+                console.log(data);
+                $("#ul").replaceWith(str);
+                // 调用分页函数.参数:当前所在页, 总页数(用总条数 除以 每页显示多少条,在向上取整), ajax函数
+                setPage(currentPage, Math.ceil(result["data"]["last_page"]), render)
+            }
+        })
+    }
+    render()
+
+    /**
+     *
+     * @param pageCurrent 当前所在页
+     * @param pageSum 总页数
+     * @param callback 调用ajax
+     */
+    function setPage(pageCurrent, pageSum, callback) {
+        $(".pagination").bootstrapPaginator({
+            alignment:"center",//居中显示
+            size:"large",
+            //设置版本号
+            numberOfPages:10,
+            bootstrapMajorVersion: 3,
+            // 显示第几页
+            currentPage: pageCurrent,
+            // 总页数
+            totalPages: pageSum,
+            //当单击操作按钮的时候, 执行该函数, 调用ajax渲染页面
+            onPageClicked: function (event,originalEvent,type,page) {
+                // 把当前点击的页码赋值给currentPage, 调用ajax,渲染页面
+                currentPage = page
+                callback && callback()
+            }
+        })
+    }
+</script>
+
 
 </body>
 </html>
