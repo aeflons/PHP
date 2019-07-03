@@ -408,13 +408,23 @@ class Index extends  Controller
         return json_encode($data,JSON_UNESCAPED_SLASHES);
     }
     public function  booklist(Request $request) {
+    //page从1开始,0和1是一样的
+    $page = $request->param("page");
+    $config = [
+        "page"=>$page,
+    ];
+    $data = Db::table("book")->order('id desc')->field('book_path',true)->paginate(10,false,$config);
+    return successResponse($data);
+}
+    public function  books_list(Request $request) {
         //page从1开始,0和1是一样的
         $page = $request->param("page");
         $config = [
             "page"=>$page,
         ];
         $data = Db::table("book")->order('id desc')->field('book_path',true)->paginate(10,false,$config);
-        return successResponse($data);
+        $this->assign('booksList', $data);
+        return $this->fetch();
     }
 
 }
